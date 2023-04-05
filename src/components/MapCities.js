@@ -26,9 +26,11 @@ export default function MapCities() {
     };
 
     const onSubmit = (e) => {
-        e.preventDefault();
         if (input === "" || input === "null") {
             alertify.alert("Error", "Please type something!", function () {
+            });
+        } else if (inputCities.length === 80) {
+            alertify.alert("CONGRATULATIONS", "", function () {
             });
         }
         else {
@@ -43,9 +45,13 @@ export default function MapCities() {
             } else {
                 var str2 = input.charAt(0).toUpperCase() + input.slice(1)
             }
-            if (currentCities.includes(str2)) {
+            if (currentCities.includes(str2) && inputCities.includes(str2) === false) {
                 setInputCities(inputCities => [...inputCities, str2]);
-            } else {
+            } else if (inputCities.includes(str2)) {
+                alertify.alert("ERROR", `You already added ${str2}`, function () {
+                });
+            }
+            else {
                 console.log("HATA")
             }
         }
@@ -96,17 +102,12 @@ export default function MapCities() {
                     style={(feature) => {
                         if (inputCities.includes(feature.properties.name)) {
                             return {
-                                stroke: true,
                                 color: 'green',
-                                fill: true,
-                                opacity: 1
                             }
                         } else {
                             return {
-                                stroke: true,
                                 color: 'red',
-                                fill: true,
-                                opacity: 1
+                                opacity: 0.7,
                             }
                         }
                     }}

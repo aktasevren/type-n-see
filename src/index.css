@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #EFEFEF !important;
 }
 
 code {
@@ -15,4 +16,5 @@ code {
 
 .map{
   height: 540px;
+  border: 5px solid black;
 }
