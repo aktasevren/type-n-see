@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, GeoJSON } from 'react-leaflet'
+import { MapContainer, GeoJSON, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { cities } from '../JSON/cities'
 import { Row, Col, Container, Button, Form, InputGroup } from "react-bootstrap";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import alertify from "alertifyjs";
 
 
@@ -22,10 +20,10 @@ export default function MapCities() {
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-          // 👇 Get input value
-          onSubmit()
+            // 👇 Get input value
+            onSubmit()
         }
-      };
+    };
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -67,8 +65,8 @@ export default function MapCities() {
             <Container>
                 <Row className="d-flex justify-content-center">
                     <Col lg={4}>
-                        <InputGroup  style={{ height: 48 }} className="my-5" onChange={onChange} onKeyDown={handleKeyDown}>
-                            <Form.Control value={input}  />
+                        <InputGroup style={{ height: 48 }} className="my-5" onChange={onChange} onKeyDown={handleKeyDown}>
+                            <Form.Control value={input} />
                             <Button onClick={onSubmit} className="btn btn-dark">
                                 <b>ADD</b>
                             </Button>
@@ -87,7 +85,10 @@ export default function MapCities() {
 
 
             <MapContainer className='map' center={[39, 35]} zoom={6} scrollWheelZoom={false} zoomControl={false} dragging={false} >
-
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                />
 
                 <GeoJSON data={cities}
 
@@ -105,7 +106,7 @@ export default function MapCities() {
                                 stroke: true,
                                 color: 'red',
                                 fill: true,
-                                opacity: 0.3
+                                opacity: 1
                             }
                         }
                     }}
