@@ -20,14 +20,19 @@ export default function MapCities() {
         setInput(e.target.value)
     };
 
-    const onSubmit = (e) => {
-        e.preventDefault()
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          // 👇 Get input value
+          onSubmit()
+        }
+      };
 
+    const onSubmit = (e) => {
+        e.preventDefault();
         if (input === "" || input === "null") {
             alertify.alert("Error", "Please type something!", function () {
             });
         }
-
         else {
             if (input[0] === "i") {
                 var str2 = "İ" + input.slice(1)
@@ -45,8 +50,8 @@ export default function MapCities() {
             } else {
                 console.log("HATA")
             }
-
         }
+        setInput("")
     }
 
     useEffect(() => {
@@ -62,8 +67,8 @@ export default function MapCities() {
             <Container>
                 <Row className="d-flex justify-content-center">
                     <Col lg={4}>
-                        <InputGroup style={{ height: 48 }} className="my-5" onChange={onChange}>
-                            <Form.Control placeholder="guess cities" />
+                        <InputGroup  style={{ height: 48 }} className="my-5" onChange={onChange} onKeyDown={handleKeyDown}>
+                            <Form.Control value={input}  />
                             <Button onClick={onSubmit} className="btn btn-dark">
                                 <b>ADD</b>
                             </Button>
