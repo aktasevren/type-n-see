@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import { cities } from '../JSON/cities'
 import { Row, Col, Container, Button, Form, InputGroup } from "react-bootstrap";
 import alertify from "alertifyjs";
+import { useStopwatch } from 'react-timer-hook';
 
 
 
@@ -11,6 +12,20 @@ import alertify from "alertifyjs";
 export default function MapCities() {
     const [inputCities, setInputCities] = useState([])
     const currentCities = []
+
+    const {
+        seconds,
+        minutes,
+        hours,
+        days,
+        isRunning,
+        start,
+        pause,
+        reset,
+    } = useStopwatch({ autoStart: false });
+
+
+
 
     const [input, setInput] = useState("")
 
@@ -26,12 +41,14 @@ export default function MapCities() {
     };
 
     const onSubmit = (e) => {
+        start()
         if (input === "" || input === "null") {
             alertify.alert("Error", "Please type something!", function () {
             });
         } else if (inputCities.length === 80) {
             alertify.alert("CONGRATULATIONS", "", function () {
             });
+            pause()
         }
         else {
             if (input[0] === "i") {
@@ -82,8 +99,17 @@ export default function MapCities() {
                 </Row>
                 <Row className="d-flex justify-content-center" >
                     <Col lg={4}>
-                        <div className="mb-5">
+                        <div className="mb-2">
                             <h2><b>{inputCities.length + "/" + cities["features"].length}</b></h2>
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                            <div style={{ fontSize: '72px' }}>
+                                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+                            </div>
+                            {/* <p>{isRunning ? 'Running' : 'Not running'}</p>
+            <button onClick={start}>Start</button>
+            <button onClick={pause}>Pause</button>
+            <button onClick={reset}>Reset</button> */}
                         </div>
                     </Col>
                 </Row>
