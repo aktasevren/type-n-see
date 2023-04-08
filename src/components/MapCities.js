@@ -12,6 +12,7 @@ import { useStopwatch } from 'react-timer-hook';
 export default function MapCities() {
     const [inputCities, setInputCities] = useState([])
     const currentCities = []
+    const [sayac, setSayac] = useState(0)
 
     const {
         seconds,
@@ -33,6 +34,8 @@ export default function MapCities() {
         setInput(e.target.value)
     };
 
+
+
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             // 👇 Get input value
@@ -41,7 +44,11 @@ export default function MapCities() {
     };
 
     const onSubmit = (e) => {
-        start()
+        console.log(sayac)
+        if (sayac == 0) {
+            start()
+        }
+        setSayac(sayac + 1)
         if (input === "" || input === "null") {
             alertify.alert("Error", "Please type something!", function () {
             });
@@ -104,7 +111,7 @@ export default function MapCities() {
                         </div>
                         <div style={{ textAlign: 'center' }}>
                             <div style={{ fontSize: '72px' }}>
-                                <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+                                <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
                             </div>
                             {/* <p>{isRunning ? 'Running' : 'Not running'}</p>
             <button onClick={start}>Start</button>
@@ -129,11 +136,13 @@ export default function MapCities() {
                         if (inputCities.includes(feature.properties.name)) {
                             return {
                                 color: 'green',
+                                fillOpacity: 1,
+
                             }
                         } else {
                             return {
-                                color: 'red',
-                                opacity: 0.7,
+                                color: 'grey',
+                                opacity: 1,
                             }
                         }
                     }}
