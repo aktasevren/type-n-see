@@ -44,7 +44,8 @@ export default function MapCities() {
     };
 
     const onSubmit = (e) => {
-        console.log(sayac)
+        console.log(inputCities)
+
         if (sayac == 0) {
             start()
         }
@@ -52,7 +53,7 @@ export default function MapCities() {
         if (input === "" || input === "null") {
             alertify.alert("Error", "Please type something!", function () {
             });
-        } else if (inputCities.length === 80) {
+        } else if (inputCities.length === 81) {
             alertify.alert("CONGRATULATIONS", "", function () {
             });
             pause()
@@ -93,26 +94,29 @@ export default function MapCities() {
         <div>
 
             <Container>
+            <Row className="d-flex justify-content-center">
+                    <h2 className='mt-2'>Türkiye'nin İlleri</h2>
+                </Row>
                 <Row className="d-flex justify-content-center">
                     <Col lg={4}>
-                        <InputGroup style={{ height: 48 }} className="my-5" onChange={onChange} onKeyDown={handleKeyDown}>
+                        <InputGroup style={{ height: 48 }} className="my-2" onChange={onChange} onKeyDown={handleKeyDown}>
                             <Form.Control value={input} />
                             <Button onClick={onSubmit} className="btn btn-dark">
                                 <b>ADD</b>
                             </Button>
-
                         </InputGroup>
                     </Col>
-                </Row>
+                    </Row>
                 <Row className="d-flex justify-content-center" >
                     <Col lg={4}>
                         <div className="mb-2">
                             <h2><b>{inputCities.length + "/" + cities["features"].length}</b></h2>
-                        </div>
-                        <div style={{ textAlign: 'center' }}>
-                            <div style={{ fontSize: '72px' }}>
+                            <div style={{ fontSize: '48px' }}>
                                 <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
                             </div>
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                            
                             {/* <p>{isRunning ? 'Running' : 'Not running'}</p>
             <button onClick={start}>Start</button>
             <button onClick={pause}>Pause</button>
@@ -136,7 +140,7 @@ export default function MapCities() {
                         if (inputCities.includes(feature.properties.name)) {
                             return {
                                 color: 'green',
-                                fillOpacity: 1,
+                                fillOpacity: 0.7,
 
                             }
                         } else {
