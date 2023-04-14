@@ -13,7 +13,7 @@ export default function TRCities() {
 
     const [listCity, setListcity] = useState([])
 
-    const [enteredCities, setEnteredCities] = useState(['Kırklareli', 'Tekirdağ', 'İstanbul', 'Kocaeli', 'Bolu', 'Düzce', 'Sakarya', 'Amasya', 'Giresun', 'Trabzon', 'Rize', 'Ordu', 'Artvin', 'Iğdır', 'Kars', 'Ardahan', 'Samsun', 'Kastamonu', 'Sinop', 'Zonguldak', 'Konya', 'Ankara', 'Eskişehir', 'Kütahya', 'Antalya', 'Denizli', 'Isparta', 'Diyarbakır', 'Afyon', 'Kilis', 'Hatay', 'Bitlis', 'Batman', 'Elazığ', 'Gümüşhane', 'Çanakkale', 'Balıkesir', 'Yalova', 'İzmir', 'Muğla', 'Aydın', 'Erzincan', 'Erzurum', 'Bayburt', 'Bartın', 'Karabük', 'Çankırı', 'Çorum', 'Kırşehir', 'Kayseri', 'Yozgat', 'Malatya', 'Mersin', 'Adana', 'Niğde', 'Nevşehir', 'Aksaray', 'Kırıkkale', 'Tunceli', 'Tokat', 'Sivas', 'Kahramanmaraş', 'Gaziantep', 'Şanlıurfa', 'Mardin', 'Siirt', 'Şırnak', 'Hakkari', 'Van', 'Bingöl', 'Muş', 'Ağrı', 'Adıyaman', 'Osmaniye', 'Karaman', 'Burdur', 'Manisa', 'Bursa', 'Bilecik', 'Uşak'])
+    const [enteredCities, setEnteredCities] = useState([])
 
     const [counter, setCounter] = useState(0)
     const [inputValue, setInputValue] = useState("")
