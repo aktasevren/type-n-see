@@ -13,7 +13,7 @@ export default function TRCities() {
 
     const [listCity, setListcity] = useState([])
 
-    const [enteredCities, setEnteredCities] = useState([])
+    const [enteredCities, setEnteredCities] = useState(['Kırklareli', 'Tekirdağ', 'İstanbul', 'Kocaeli', 'Bolu', 'Düzce', 'Sakarya', 'Amasya', 'Giresun', 'Trabzon', 'Rize', 'Ordu', 'Artvin', 'Iğdır', 'Kars', 'Ardahan', 'Samsun', 'Kastamonu', 'Sinop', 'Zonguldak', 'Konya', 'Ankara', 'Eskişehir', 'Kütahya', 'Antalya', 'Denizli', 'Isparta', 'Diyarbakır', 'Afyon', 'Kilis', 'Hatay', 'Bitlis', 'Batman', 'Elazığ', 'Gümüşhane', 'Çanakkale', 'Balıkesir', 'Yalova', 'İzmir', 'Muğla', 'Aydın', 'Erzincan', 'Erzurum', 'Bayburt', 'Bartın', 'Karabük', 'Çankırı', 'Çorum', 'Kırşehir', 'Kayseri', 'Yozgat', 'Malatya', 'Mersin', 'Adana', 'Niğde', 'Nevşehir', 'Aksaray', 'Kırıkkale', 'Tunceli', 'Tokat', 'Sivas', 'Kahramanmaraş', 'Gaziantep', 'Şanlıurfa', 'Mardin', 'Siirt', 'Şırnak', 'Hakkari', 'Van', 'Bingöl', 'Muş', 'Ağrı', 'Adıyaman', 'Osmaniye', 'Karaman', 'Burdur', 'Manisa', 'Bursa', 'Bilecik', 'Uşak'])
 
     const [counter, setCounter] = useState(0)
     const [inputValue, setInputValue] = useState("")
@@ -21,12 +21,15 @@ export default function TRCities() {
 
     useEffect(() => {
         cities["features"].map((city) => setListcity(listCity => [...listCity,city.properties.name]))
+
+        
     }, [])
+    
 
     useEffect(() => {
 
         cities["features"].map((city) => currentCities.push((city.properties.name)))
-        console.log(listCity)
+        
 
     }, [enteredCities, currentCities,])
 
@@ -64,8 +67,12 @@ export default function TRCities() {
             }
             if (currentCities.includes(str2) && enteredCities.includes(str2) === false) {
                 setEnteredCities(enteredCities => [...enteredCities, str2]);
-
-
+                console.log(enteredCities.length)
+                if(enteredCities.length == 80){
+                    alertify.alert("CONGRATULATIONS", `You finished in ${hours}:${minutes}:${seconds}`, function () {
+                    });
+                    pause()
+                }
             } else if (enteredCities.includes(str2)) {
                 alertify.alert("ERROR", `You already added ${str2}`, function () {
                 });
@@ -75,6 +82,8 @@ export default function TRCities() {
             }
         }
         setInputValue("")
+
+
     }
 
 
@@ -90,7 +99,8 @@ export default function TRCities() {
                         <Button onClick={onSubmit} className="btn btn-dark me-3">
                             <b>EKLE</b>
                         </Button>
-                        <h4><b>{enteredCities.length + "/" + cities["features"].length} -- <span style={{ color: "blue" }}><span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span></span></b></h4>
+                        <h4><b>{enteredCities.length + "/" + cities["features"].length} -- <span style={{ color: "red" }}>
+                            <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span></span></b></h4>
 
                     </InputGroup>
                 </Col>
