@@ -1,6 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
-import MapCities from './components/MapCities';
+import MapCities from './components/TRCities';
 
 function App() {
   return (
