@@ -88,11 +88,8 @@ export default function TRCities() {
 
 
     return (
-        <div>
-            <Row className="d-flex">
-                <h4 className='m-3'>Türkiye'nin İlleri</h4>
-            </Row>
-            <Row className="m-1">
+        <div style={{marginLeft:'20%'}}>
+            <Row className="">
                 <Col lg={4}>
                     <InputGroup style={{ height: 32 }} className="" onChange={onChange} onKeyDown={handleKeyDown}>
                         <Form.Control value={inputValue} />
